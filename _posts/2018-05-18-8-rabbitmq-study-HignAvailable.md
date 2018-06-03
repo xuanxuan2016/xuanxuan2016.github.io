@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "RabbitMQ学习（八）-高可用"
-subtitle:   "Hign Available"
+subtitle:   "hign available"
 date:       2018-05-19 20:50
 author:     "BeautyMyth"
 header-img: "img/post-bg-2015.jpg"
@@ -24,7 +24,7 @@ tags:
 为了保证RabbitMQ服务器的可用性，线上环境一般都使用镜像集群，当集群中某些节点不可用时，集群还是可以工作的。
 </p>
 
-[镜像集群搭建方法]()
+[镜像集群搭建方法](https://xuanxuan2016.github.io/2018/05/18/7-rabbitmq-study-Cluster/#%E9%95%9C%E5%83%8F%E9%9B%86%E7%BE%A4)
 
 ## 生产者
 
