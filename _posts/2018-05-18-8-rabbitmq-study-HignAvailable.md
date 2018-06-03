@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "RabbitMQ学习（七）-高可用"
+title:      "RabbitMQ学习（八）-高可用"
 subtitle:   "Hign Available"
 date:       2018-05-19 20:50
 author:     "BeautyMyth"
