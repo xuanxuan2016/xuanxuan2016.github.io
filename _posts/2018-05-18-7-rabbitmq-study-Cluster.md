@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "RabbitMQ学习（七）-集群"
-subtitle:   "Cluster"
+subtitle:   "cluster"
 date:       2018-05-18 20:50
 author:     "BeautyMyth"
 header-img: "img/post-bg-2015.jpg"
@@ -20,10 +20,7 @@ tags:
 这里我们建立一个3台机器组成的集群，事先先在3台机器上安装好RabbitMQ服务。
 </p>
 
-<p>
-
-[安装方法戳这里。]()
-</p>
+[安装方法戳这里](https://xuanxuan2016.github.io/2018/05/08/rabbitmq-study-prepare-environment/)
 
 <p>
 机器IP：<br>
@@ -274,7 +271,7 @@ Cluster status of node 'rabbit@DEV-HROEx64'
 
 #### 6.从集群中移除节点
 
-##### 1.在要脱离的节点机器上
+##### 6.1.在要脱离的节点机器上
 
 ```
 [root@DEV-mHRO otp_src_20.3]# rabbitmqctl stop_app
@@ -286,7 +283,7 @@ Resetting node 'rabbit@DEV-mHRO'
 Starting node 'rabbit@DEV-mHRO'
 ```
 
-##### 2.在其他节点机器上
+##### 6.2.在其他节点机器上
 
 ```
 #模拟rabbitmq_node2没服务了
@@ -300,7 +297,7 @@ Removing node 'rabbit@DEV-mHRO' from cluster
 
 #### 7.web管理端查看集群状态
 
-##### 1.新增集群账号
+##### 7.1.新增集群账号
 
 <p>
 在集群中任意一个节点上，新增一个可用账号。
@@ -315,7 +312,7 @@ Setting permissions for user "admin" in vhost "/"
 Setting tags for user "admin" to [administrator]
 ```
 
-##### 2.开启rabbitmq_management插件
+##### 7.2.开启rabbitmq_management插件
 
 <p>
 为了监控数据的准确性需要开启每台服务器的rabbitmq_management插件。
@@ -332,7 +329,7 @@ Setting tags for user "admin" to [administrator]
 [root@DEV-mHRO64 ~]# rabbitmq-plugins enable rabbitmq_management
 ```
 
-##### 3.登录web管理端查看集群状态
+##### 7.3.登录web管理端查看集群状态
 
 ![image](https://github.com/beautymyth/beautymyth.github.io/blob/master/img/2018-05-18-7-rabbitmq-study-Cluster/20180526161717.png?raw=true)
 
@@ -342,7 +339,7 @@ Setting tags for user "admin" to [administrator]
 为了验证集群的可用性，我们将消息发送到<code>rabbitmq_node1</code>上的队列，在<code>rabbitmq_node2</code>与<code>rabbitmq_node3</code>获取队列里的消息。
 </p>
 
-##### 1.测试代码
+##### 8.1.测试代码
 
 [生产-node1](https://github.com/beautymyth/rabbitmq-study/blob/master/direct_cluster_producer.php)
 
@@ -350,7 +347,7 @@ Setting tags for user "admin" to [administrator]
 
 [消费-node3](https://github.com/beautymyth/rabbitmq-study/blob/master/direct_cluster_consumer2.php)
 
-##### 2.web管理端信息
+##### 8.2.web管理端信息
 
 ![image](https://github.com/beautymyth/beautymyth.github.io/blob/master/img/2018-05-18-7-rabbitmq-study-Cluster/20180526170231.png?raw=true)
 
@@ -390,20 +387,20 @@ Setting tags for user "admin" to [administrator]
 
 #### 4.创建镜像策略
 
-##### 1.web管理端
+##### 4.1.web管理端
 
 ![image](https://github.com/beautymyth/beautymyth.github.io/blob/master/img/2018-05-18-7-rabbitmq-study-Cluster/20180526183111.png?raw=true)
 
 ![image](https://github.com/beautymyth/beautymyth.github.io/blob/master/img/2018-05-18-7-rabbitmq-study-Cluster/20180526183151.png?raw=true)
 
-##### 2.cli命令行
+##### 4.2.cli命令行
 
 ```
 [root@DEV-HROEx64 ~]# rabbitmqctl set_policy -p / test_policy2 '^' '{"ha-mode":"all"}'
 Setting policy "test_policy2" for pattern "^" to "{\"ha-mode\":\"all\"}" with priority "0"
 ```
 
-##### 3.策略查看
+##### 4.3.策略查看
 
 <p>
 检查3台机器上的策略已经同步为一致了。
