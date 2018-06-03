@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "RabbitMQ学习（七）-高可用"
-subtitle:   "exchange"
+subtitle:   "Hign Available"
 date:       2018-05-19 20:50
 author:     "BeautyMyth"
 header-img: "img/post-bg-2015.jpg"
