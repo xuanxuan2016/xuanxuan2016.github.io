@@ -1,0 +1,65 @@
+---
+title: Articles
+layout: default
+description: keep hungry keep foolish
+header-img: "img/tag-bg.jpg"
+---
+
+<!-- Page Header -->
+<header class="intro-header" style="background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading" id="tag-heading">
+                    <h1>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</h1>
+                    <span class="subheading">{{ page.description }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+            <!--<blockquote class="tag-comments">
+                标签命名规范：
+                    <li>行业观察、职位、公司优先使用中文</li>
+                    <li>外国产品、术语优先使用英文</li>
+            </blockquote>-->
+
+            <!-- 标签列表 -->
+            {% assign date_year_month = "" %}
+            {% for post in site.posts %}
+            {% assign year_month = post.date | date:"%Y-%m" %}
+            {% assign date_year_month = date_year_month|append:year_month|append:',' %}
+            {% endfor %}
+
+            {% assign date_year_month = date_year_month|split:','|uniq|sort_natural|reverse  %}
+
+            {% for year_month in date_year_month %}
+            <div class="one-tag-list" style="margin: 10px 0px;">
+                <span class="fa fa-calendar listing-seperator" id="{{ year_month }}">
+                    <span class="tag-text">{{ year_month }}</span>
+                </span>
+                {% for post in site.posts %}
+                {% assign year_month_post = post.date | date:"%Y-%m" %}
+                {% if year_month ==year_month_post %}
+                <div class="post-preview">
+                    <a href="{{ post.url | prepend: site.baseurl }}">
+                        <h3 class="post-title" style='margin-top: 10px;margin-bottom: 5px;'>
+                            {{ post.title }}
+                        </h3>
+                    </a>
+                </div>
+                <hr style='margin-top: 10px; margin-bottom: 10px;'>
+                {% endif %}
+                {% endfor %}
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
