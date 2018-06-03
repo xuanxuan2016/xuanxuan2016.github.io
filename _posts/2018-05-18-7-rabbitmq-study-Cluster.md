@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      "RabbitMQ学习（六）-集群"
-subtitle:   "exchange"
+title:      "RabbitMQ学习（七）-集群"
+subtitle:   "Cluster"
 date:       2018-05-18 20:50
 author:     "BeautyMyth"
 header-img: "img/post-bg-2015.jpg"
