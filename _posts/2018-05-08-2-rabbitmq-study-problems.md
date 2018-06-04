@@ -192,7 +192,7 @@ You have mail in /var/spool/mail/root
 ```
 
 
-## 消息推送接受问题
+## 消息推送接收问题
 
 #### 1.生产者发送消费者没接收到
 
@@ -202,17 +202,18 @@ You have mail in /var/spool/mail/root
 
 <p>
 查询web控制台发现，队列被2个消费者绑定了，但是终端感觉只有一个，还有一个不知道是不是测试没处理好，导致一直在运行。
+</p>
 
 ![image](https://github.com/beautymyth/beautymyth.github.io/blob/master/img/2018-05-08-2-rabbitmq-study-problems/20180519121651.png?raw=true)
-</p>
+
 
 <p>
 处理方法只能在web控制台关闭连接了。
+</p>
 
 ![image](https://github.com/beautymyth/beautymyth.github.io/blob/master/img/2018-05-08-2-rabbitmq-study-problems/20180519121158.png?raw=true)
 
 ![image](https://github.com/beautymyth/beautymyth.github.io/blob/master/img/2018-05-08-2-rabbitmq-study-problems/20180519121122.png?raw=true)
-</p>
 
 ## 参数绑定问题
 
