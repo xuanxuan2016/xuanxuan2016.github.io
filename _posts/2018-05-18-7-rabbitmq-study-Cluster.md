@@ -331,7 +331,7 @@ Setting tags for user "admin" to [administrator]
 
 ##### 7.3.登录web管理端查看集群状态
 
-![image](https://github.com/beautymyth/beautymyth.github.io/blob/master/img/2018-05-18-7-rabbitmq-study-Cluster/20180526161717.png?raw=true)
+![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2018-05-18-7-rabbitmq-study-Cluster/20180526161717.png?raw=true)
 
 #### 8.集群使用测试
 
@@ -349,9 +349,9 @@ Setting tags for user "admin" to [administrator]
 
 ##### 8.2.web管理端信息
 
-![image](https://github.com/beautymyth/beautymyth.github.io/blob/master/img/2018-05-18-7-rabbitmq-study-Cluster/20180526170231.png?raw=true)
+![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2018-05-18-7-rabbitmq-study-Cluster/20180526170231.png?raw=true)
 
-![image](https://github.com/beautymyth/beautymyth.github.io/blob/master/img/2018-05-18-7-rabbitmq-study-Cluster/20180526170706.png?raw=true)
+![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2018-05-18-7-rabbitmq-study-Cluster/20180526170706.png?raw=true)
 
 ## 镜像集群
 
@@ -389,9 +389,9 @@ Setting tags for user "admin" to [administrator]
 
 ##### 4.1.web管理端
 
-![image](https://github.com/beautymyth/beautymyth.github.io/blob/master/img/2018-05-18-7-rabbitmq-study-Cluster/20180526183111.png?raw=true)
+![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2018-05-18-7-rabbitmq-study-Cluster/20180526183111.png?raw=true)
 
-![image](https://github.com/beautymyth/beautymyth.github.io/blob/master/img/2018-05-18-7-rabbitmq-study-Cluster/20180526183151.png?raw=true)
+![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2018-05-18-7-rabbitmq-study-Cluster/20180526183151.png?raw=true)
 
 ##### 4.2.cli命令行
 
@@ -432,6 +432,6 @@ Listing policies
 测试代码同上面普通集群的测试代码。
 </p>
 
-![image](https://github.com/beautymyth/beautymyth.github.io/blob/master/img/2018-05-18-7-rabbitmq-study-Cluster/20180526190556.png?raw=true)
+![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2018-05-18-7-rabbitmq-study-Cluster/20180526190556.png?raw=true)
 
-![image](https://github.com/beautymyth/beautymyth.github.io/blob/master/img/2018-05-18-7-rabbitmq-study-Cluster/20180526190945.png?raw=true)
+![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2018-05-18-7-rabbitmq-study-Cluster/20180526190945.png?raw=true)
