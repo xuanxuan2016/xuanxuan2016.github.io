@@ -204,16 +204,16 @@ You have mail in /var/spool/mail/root
 查询web控制台发现，队列被2个消费者绑定了，但是终端感觉只有一个，还有一个不知道是不是测试没处理好，导致一直在运行。
 </p>
 
-![image](https://github.com/beautymyth/beautymyth.github.io/blob/master/img/2018-05-08-2-rabbitmq-study-problems/20180519121651.png?raw=true)
+![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2018-05-08-2-rabbitmq-study-problems/20180519121651.png?raw=true)
 
 
 <p>
 处理方法只能在web控制台关闭连接了。
 </p>
 
-![image](https://github.com/beautymyth/beautymyth.github.io/blob/master/img/2018-05-08-2-rabbitmq-study-problems/20180519121158.png?raw=true)
+![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2018-05-08-2-rabbitmq-study-problems/20180519121158.png?raw=true)
 
-![image](https://github.com/beautymyth/beautymyth.github.io/blob/master/img/2018-05-08-2-rabbitmq-study-problems/20180519121122.png?raw=true)
+![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2018-05-08-2-rabbitmq-study-problems/20180519121122.png?raw=true)
 
 ## 参数绑定问题
 
