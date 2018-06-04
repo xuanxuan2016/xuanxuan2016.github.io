@@ -16,7 +16,7 @@ tags:
 
 ## 架构图
 
-
+![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2018-05-18-8-rabbitmq-study-HignAvailable/ha.png?raw=true)
 
 ## 服务器
 
