@@ -40,7 +40,7 @@ tcp        0      0 10.100.255.115:15672        10.100.255.1:59372          ESTA
 
 可通过<code>ip:15672</code>的形式来访问网站。
 <br>
-![image](https://github.com/beautymyth/beautymyth.github.io/blob/master/img/2018-05-08-4-rabbitmq-study-web-management/pzwycj-1.png?raw=true)
+![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2018-05-08-4-rabbitmq-study-web-management/pzwycj-1.png?raw=true)
 
 如果访问不了，可尝试使用如下一些解决方法。
 - 使用域名
@@ -76,7 +76,7 @@ tcp        0      0 10.100.255.115:15672        10.100.255.1:59372          ESTA
 
 使用刚刚设置的账号与密码，就可以登录进来了。
 <br>
-![image](https://github.com/beautymyth/beautymyth.github.io/blob/master/img/2018-05-08-4-rabbitmq-study-web-management/pzwycj-2.png?raw=true)
+![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2018-05-08-4-rabbitmq-study-web-management/pzwycj-2.png?raw=true)
 
 ## 网页插件功能说明
 
@@ -84,7 +84,7 @@ tcp        0      0 10.100.255.115:15672        10.100.255.1:59372          ESTA
 
 ##### Totals：总况
 
-![image](https://github.com/beautymyth/beautymyth.github.io/blob/master/img/2018-05-08-4-rabbitmq-study-web-management/overview-queued-messages.png?raw=true)
+![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2018-05-08-4-rabbitmq-study-web-management/overview-queued-messages.png?raw=true)
 
 
 
