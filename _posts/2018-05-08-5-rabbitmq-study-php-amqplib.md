@@ -100,4 +100,4 @@ while (count($objChannel->callbacks)) {
 #### 1.AMQPChannel->AbstractChannel->wait()
 
 阻塞等待rabbit服务器推送消息过来，如果接受到消息则调用回调方法处理，处理好后继续阻塞等待。
-![image](https://github.com/beautymyth/beautymyth.github.io/blob/master/img/2018-05-08-6-rabbitmq-study-php-amqplib/AMQPChannel-_AbstractChannel-_wait.png?raw=true)
+![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2018-05-08-6-rabbitmq-study-php-amqplib/AMQPChannel-_AbstractChannel-_wait.png?raw=true)
