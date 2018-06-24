@@ -400,8 +400,22 @@ $api = resolve('HelpSpot\API');
 ## 事件
 
 <p>
-在服务提供者的boot方法中添加，但是没找到调用boot的地方。
+注册解析服务时触发的全局事件或服务的事件，可在服务提供者的boot方法中注册。
 </p>
+
+<p>
+应用的启动在BootProviders中的bootstrap方法里。
+</p>
+
+```
+$this->app->resolving(function ($object, $app) {
+    //注册全局解析方法，解析任何类型时都会触发
+});
+
+$this->app->resolving(HelpSpot\API::class, function ($api, $app) {
+    //注册类型解析方法，解析对应类型时才会触发
+});
+```
 
 ## 注释版代码
 
