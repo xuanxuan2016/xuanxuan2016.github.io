@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "laravel学习（三）-服务提供者"
+title:      "laravel学习（四）-服务提供者"
 subtitle:   "Service Providers"
 date:       2018-06-06 20:50
 author:     "BeautyMyth"
