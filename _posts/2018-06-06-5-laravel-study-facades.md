@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "laravel学习（四）-外观"
+title:      "laravel学习（五）-外观"
 subtitle:   "Facades"
 date:       2018-06-06 20:50
 author:     "BeautyMyth"
