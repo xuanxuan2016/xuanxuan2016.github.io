@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "laravel学习（五）-契约"
+title:      "laravel学习（六）-契约"
 subtitle:   "Contracts"
 date:       2018-06-06 20:50
 author:     "BeautyMyth"
