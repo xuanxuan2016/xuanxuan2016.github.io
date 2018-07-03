@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "laravel学习（七）-路由"
-subtitle:   "Contracts"
+subtitle:   "Routing"
 date:       2018-06-06 20:50
 author:     "BeautyMyth"
 header-img: "img/post-bg-2015.jpg"
