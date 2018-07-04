@@ -42,7 +42,7 @@ tags:
 解析获取内核的实例，同时将应用实例与路由器实例注入到内核实例中。
 </p>
 
-![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2018-06-06-2-laravel-study-request-lifecycle/20180701160411.png?raw=true)
+![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2018-06-06-2-laravel-study-request-lifecycle/20180704104932.png?raw=true)
 
 ## 处理http请求
 
@@ -50,7 +50,7 @@ tags:
 获取到内核实例后，就需要调用内核中的handle方法来处理http请求。
 </p>
 
-![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2018-06-06-2-laravel-study-request-lifecycle/2018-07-01_163905.png?raw=true)
+![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2018-06-06-2-laravel-study-request-lifecycle/20180704104955.png?raw=true)
 
 ## 发送响应
 
