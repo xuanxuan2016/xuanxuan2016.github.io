@@ -269,6 +269,24 @@ Cluster status of node 'rabbit@DEV-HROEx64'
 
 ```
 
+<p>
+如果原先集群的挂载的节点(rabbit@DEV-HROEx64)从集群(rabbit@DEV-HROEx64)脱离了，在重新挂载到集群时，会报如下错误。
+</p>
+
+```
+[root@DEV-HROEx64 /]# rabbitmqctl join_cluster rabbit@DEV-HROEx64
+Clustering node 'rabbit@DEV-HROEx64' with 'rabbit@DEV-HROEx64'
+Error: cannot_cluster_node_with_itself
+```
+
+<p>
+可将节点挂载到集群中的任意有效节点(rabbit@DEV-mHRO)，则节点也会进入到集群中。
+</p>
+
+```
+[root@DEV-HROEx64 /]# rabbitmqctl join_cluster rabbit@DEV-mHRO
+```
+
 #### 6.从集群中移除节点
 
 ##### 6.1.在要脱离的节点机器上
