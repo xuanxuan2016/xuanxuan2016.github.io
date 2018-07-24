@@ -89,5 +89,8 @@ friends: [
     {
         title: "阮一峰的个人网站",
         href: "http://www.ruanyifeng.com/home.html"
+    },{
+        title: "张鑫旭的个人主页",
+        href: "https://www.zhangxinxu.com/"
     }
 ]
