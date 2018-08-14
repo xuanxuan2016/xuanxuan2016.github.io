@@ -35,6 +35,10 @@ tags:
 每次pconnect会根据<code>标识id</code>在当前运行的httpd或php-fpm进程中查找已存在的连接，如果存在则复用连接，否则新建连接；脚本运行结束之后不会自动断开连接，连接会保留在httpd或php-fpm进程中，除非进程关闭或连接空闲时间达到redis设置的timeout（timeout=0为永不超时）。
 </p>
 
+<p>
+此特性在线程版本里是无效的，pconnect等同于connect。
+</p>
+
 ## 测试准备
 
 <p>
