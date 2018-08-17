@@ -81,7 +81,10 @@ PATH=/usr/local/php/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/
 
 [php-redis扩展](http://pecl.php.net/package/redis)
 
+<p>
 注意：phpize与php-config需要使用新版本的。
+</p>
+
 ```linux
 [root@iZwz9i8fd8lio2yh3oerizZ bmsource]# tar -xvf redis-3.1.2.tgz 
 [root@iZwz9i8fd8lio2yh3oerizZ bmsource]# cd redis-3.1.2
