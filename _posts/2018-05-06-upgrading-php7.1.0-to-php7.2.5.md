@@ -73,13 +73,14 @@ PATH=/usr/local/php/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/
 ```
 ## 重新编译第三方扩展
 
-[php-redis扩展](http://pecl.php.net/package/redis)
-
 <p>
 如果使用了原php版本编译的扩展，因为php升级了，所以相应的扩展也需要重新编译。
 </p>
 
 #### 1.redis扩展
+
+[php-redis扩展](http://pecl.php.net/package/redis)
+
 注意：phpize与php-config需要使用新版本的。
 ```linux
 [root@iZwz9i8fd8lio2yh3oerizZ bmsource]# tar -xvf redis-3.1.2.tgz 
