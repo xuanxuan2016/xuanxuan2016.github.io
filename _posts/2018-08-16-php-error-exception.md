@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "php中异常与错误处理"
-subtitle:   "php Rrror and Exception"
+subtitle:   "php Error and Exception"
 date:       2018-08-16 20:50
 author:     "BeautyMyth"
 header-img: "img/post-bg-2015.jpg"
