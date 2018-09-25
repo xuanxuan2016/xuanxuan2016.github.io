@@ -293,7 +293,7 @@ config_file:/usr/local/redis/redis.conf
 	</tbody>
 </table>
 
-#### aof配置
+#### AOF配置
 
 <table border="1" cellpadding="0" cellspacing="0" style="width:700px">
 	<tbody>
@@ -374,7 +374,7 @@ config_file:/usr/local/redis/redis.conf
 	</tbody>
 </table>
 
-#### rbd配置
+#### RDB配置
 
 <table border="1" cellpadding="0" cellspacing="0" style="width:700px">
 	<tbody>
@@ -436,7 +436,7 @@ config_file:/usr/local/redis/redis.conf
 <table border="1" cellpadding="0" cellspacing="0" style="width:700px">
 	<tbody>
 		<tr>
-			<td colspan="5" style="text-align:center">RDB</td>
+			<td colspan="5" style="text-align:center">慢查询</td>
 		</tr>
 		<tr>
 			<td>名称</td>
@@ -470,7 +470,7 @@ config_file:/usr/local/redis/redis.conf
 	</tbody>
 </table>
 
-#### 数据结构优化
+#### 数据结构优化配置
 
 <table border="1" cellpadding="0" cellspacing="0" style="width:700px">
 	<tbody>
@@ -544,7 +544,7 @@ config_file:/usr/local/redis/redis.conf
 	</tbody>
 </table>
 
-#### 主从复制
+#### 主从复制配置
 
 <table border="1" cellpadding="0" cellspacing="0" style="width:700px">
 	<tbody>
@@ -664,7 +664,7 @@ config_file:/usr/local/redis/redis.conf
 	</tbody>
 </table>
 
-#### 客户端
+#### 客户端配置
 
 <table border="1" cellpadding="0" cellspacing="0" style="width:700px">
 	<tbody>
@@ -711,7 +711,7 @@ config_file:/usr/local/redis/redis.conf
 	</tbody>
 </table>
 
-#### 安全
+#### 安全配置
 
 <table border="1" cellpadding="0" cellspacing="0" style="width:700px">
 	<tbody>
