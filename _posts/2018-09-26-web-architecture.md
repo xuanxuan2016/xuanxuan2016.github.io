@@ -47,7 +47,7 @@ Next, we attempt to find similar photos by sending a request to our full text se
 The server now renders the view as HTML and sends it back to the user's browser, passing first through the load balancer. The page contains Javascript and CSS assets that we load into our cloud storage system, which is connected to our CDN, so the user’s browser contacts the CDN to retrieve the content. Lastly, the browser visibly renders the page for the user to see.
 </p>
 
-## 组件
+## 架构节点
 
 <p>
 下面介绍的是网站架构图里的各个组成部分
