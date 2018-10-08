@@ -41,9 +41,9 @@ root     24000     1  0 16:51 ?        00:00:00 ./redis-server 127.0.0.1:6383
 redis实例默认都是主节点，每个从节点只能有一个主节点，而主节点可以有多个从节点，复制的数据只能从主节点到从节点。可通过如下方式配置：
 </p>
 
-- 配置文件：在redis.conf中增加slaveof {master-host} {master-port}的配置，启动服务是自动生效
-- 服务启动：在执行redis-server命令启动服务时，增加--slaveof {master-host} {master-port}的参数
-- 命令使用：在启动服务后，进入实例执行slaveof {master-host} {master-port}生效
+- 配置文件：在redis.conf中增加<code>slaveof {master-host} {master-port}</code>的配置，启动服务时自动生效
+- 服务启动：在执行redis-server命令启动服务时，增加<code>--slaveof {master-host} {master-port}</code>的参数
+- 命令使用：在启动服务后，进入实例执行<code>slaveof {master-host} {master-port}</code>生效
 
 <p>
 <font color="red">
@@ -287,7 +287,7 @@ OK
 psync命令依赖的组件：
 </p>
 
-- 主从节点各自的复制偏移量：主节点为<code>master_repl_offset<</code>，从节点自身为<code>slave_repl_offset</code>与上报的为<code>offset</code>
+- 主从节点各自的复制偏移量：主节点为<code>master_repl_offset</code>，从节点自身为<code>slave_repl_offset</code>与上报的为<code>offset</code>
 - 主节点复制积压缓冲区
 - 主节点运行id
 
