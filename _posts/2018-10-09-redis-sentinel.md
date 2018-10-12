@@ -673,10 +673,13 @@ down-by-addr</code>命令来获取其他sentinel节点对主节点的判断，�
 </p>
 
 <p>
-命令说明：<code>sentinel is-master-down-by-addr <ip> <port> <current_epoch> <runid></code>
+命令说明：<code>sentinel is-master-down-by-addr {ip} {port} {current_epoch} {runid}</code>
 </p>
 
-
+- ip：主节点ip
+- port：主节点端口
+- current_epoch：当前配置纪元
+- runid："*"交换对主节点下线的判定，否则当runid等于当前Sentinel节点的runid时，作用是当前Sentinel节点希望目标Sentinel节点同意自己成为领导者的请求
 
 ```
 [root@vagrant redis-6383]# ./redis-cli -h 127.0.0.1 -p 26380 sentinel is-master-down-by-addr 127.0.0.1 6381 7 '*'
