@@ -60,7 +60,7 @@ root      4129     1  0 13:19 ?        00:00:00 ./redis-server *:6383
 		</tr>
 		<tr>
 			<td>port</td>
-			<td>d端口</td>
+			<td>端口</td>
 			<td>整数</td>
 		</tr>
 		<tr>
@@ -668,8 +668,7 @@ Reading messages... (press Ctrl-C to quit)
 ##### 客观下线
 
 <p>
-当主观下线的节点为主节点时，sentinel会向其他sentinel节点发送<code>sentinel ismaster-
-down-by-addr</code>命令来获取其他sentinel节点对主节点的判断，如果超过<code>quorum</code>个sentinel节点认为主节点为主观下线，则sentinel会认为主节点为客观下线。
+当主观下线的节点为主节点时，sentinel会向其他sentinel节点发送<code>sentinel ismaster-down-by-addr</code>命令来获取其他sentinel节点对主节点的判断，如果超过<code>quorum</code>个sentinel节点认为主节点为主观下线，则sentinel会认为主节点为客观下线。
 </p>
 
 <p>
