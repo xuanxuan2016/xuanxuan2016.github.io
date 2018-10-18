@@ -157,7 +157,7 @@ $this->getChannel()->queue_declare($strQueueName, false, true, false, false, fal
 [官方文档](http://www.rabbitmq.com/confirms.html#consumer-acknowledgements)
 
 <p>
-为了确保消费者成功的消费的消息，从而从队列中删除此消息，需要使用生产者确认模式。
+为了确保消费者成功的消费的消息，从而从队列中删除此消息，需要使用消费者确认模式。
 </p>
 
 ```
