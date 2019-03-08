@@ -131,3 +131,23 @@ Eshell V9.3  (abort with ^G)
 [root@iZwz9i8fd8lio2yh3oerizZ bmsource]# vim /etc/profile
 [root@iZwz9i8fd8lio2yh3oerizZ bmsource]# source /etc/profile
 ```
+
+#### 4.工作文件夹
+
+rabbitmq正常工作使用如下2个文件夹，通常在运行rabbitmq服务时，会自动创建出来，不需要手动创建。
+
+##### 日志文件夹
+
+用于存储rabbitmq的运行日志。
+
+```linux
+/usr/local/rabbitmq/var/log/rabbitmq
+```
+
+##### 数据文件夹
+
+rabbitmq使用mnesia数据库存储服务器信息，如队列元数据，虚拟主机等。
+
+```linux
+/usr/local/rabbitmq/var/lib/rabbitmq/mnesia/节点名称
+```
