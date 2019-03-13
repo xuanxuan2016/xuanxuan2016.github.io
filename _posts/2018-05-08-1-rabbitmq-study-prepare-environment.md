@@ -100,7 +100,7 @@ Eshell V9.3  (abort with ^G)
 
 #### 1.下载安装文件
 
-可去[RabbitMQ官网](http://www.rabbitmq.com/releases/rabbitmq-server/)查询可用版本，这里使用最新版本。注意使用带<code>generic-unix</code>标识的。
+可去[RabbitMQ的Git](https://github.com/rabbitmq/rabbitmq-server/releases)查询可用版本，这里使用最新版本。注意使用带<code>generic-unix</code>标识的。
 
 ```linux
 [root@iZwz9i8fd8lio2yh3oerizZ bmsource]# wget http://www.rabbitmq.com/releases/rabbitmq-server/v3.6.15/rabbitmq-server-generic-unix-3.6.15.tar.xz
