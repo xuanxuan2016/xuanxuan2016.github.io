@@ -33,6 +33,10 @@ rabbitmq-server -detached
 此命令用于管理RabbitMQ节点。
 </p>
 
+<p style="color:red;">
+Tips：如下有些命令，在低版本里会没有。
+</p>
+
 #### 用户管理
 
 ##### add_user
@@ -306,6 +310,71 @@ list_user_topic_permissions username
 
 #示例
 rabbitmqctl list_topic_user_permissions user_test
+```
+
+#### 虚拟主机限制
+
+##### set_vhost_limits
+
+<p>
+对虚拟主机设置某些限制。
+</p>
+
+<p>
+definition为json格式的字符串，当值为负数时表示不做任何限制。
+</p>
+
+- max-connections：设置最大连接数
+- max-queues：设置最多队列数
+
+```
+#命令格式
+set_vhost_limits [-p vhost] definition
+
+#示例
+#设置最大连接数为64
+rabbitmqctl set_vhost_limits -p vhost_test '{"max-connections": 64}'
+
+#设置最多队列数为256
+rabbitmqctl set_vhost_limits -p vhost_test '{"max-queues": 256}'
+
+#设置最大连接数为不受限
+rabbitmqctl set_vhost_limits -p vhost_test '{"max-connections": -1}'
+
+#设置最大连接数为0，不允许任何连接进来
+rabbitmqctl set_vhost_limits -p vhost_test '{"max-connections": 0}'
+```
+
+##### clear_vhost_limits
+
+<p>
+清除虚拟主机上的限制。
+</p>
+
+```
+#命令格式
+clear_vhost_limits [-p vhost]
+
+#示例
+rabbitmqctl clear_vhost_limits -p vhost_test
+```
+
+##### list_vhost_limits
+
+<p>
+清除虚拟主机上的限制。
+</p>
+
+```
+#命令格式
+list_vhost_limits [-p vhost] [--global]
+
+#示例
+#显示指定虚拟主机
+rabbitmqctl list_vhost_limits -p vhost_test
+
+#显示所有虚拟主机
+rabbitmqctl list_vhost_limits --global
 ```
 
 ## rabbitmq-plugins
