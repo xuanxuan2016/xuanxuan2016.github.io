@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "RabbitMQ学习（八）-高可用"
+title:      "RabbitMQ学习（七）-高可用"
 subtitle:   "hign available"
 date:       2018-05-19 20:50
 author:     "BeautyMyth"
@@ -28,7 +28,19 @@ tags:
 
 ## 生产者
 
-#### 1.队列持久化
+#### 1.交换器持久化
+
+<p>
+正常的业务交换器定义好后一般都会一直使用，即使服务器重启也不会消失。
+</p>
+
+```
+#在定义交换器时(一般在消费者处)，控制如下2个参数
+durable：true
+auto_delete：false
+```
+
+#### 2.队列持久化
 
 <p>
 正常的业务队列定义好后一般都会一直使用，即使服务器重启也不会消失。
@@ -40,18 +52,23 @@ durable：true
 auto_delete：false
 ```
 
-#### 2.消息持久化
+#### 3.消息持久化
 
 <p>
 为了确保消息在服务器出问题的时候也不会丢失，需要将消息持久到磁盘。
 </p>
+
+消息真正的持久化实际需要依赖以下几点：
+- 消息投递模式设置为2（持久）
+- 消息发送到了持久化交换器
+- 消息最终到达持久化队列
 
 ```
 #在定义消息时增加属性
 properties：['delivery_mode' => AMQPMessage::DELIVERY_MODE_PERSISTENT]
 ```
 
-#### 3.备用交换器
+#### 4.备用交换器
 
 [官方文档](https://www.rabbitmq.com/ae.html)
 
@@ -69,7 +86,7 @@ $this->getChannel()->exchange_declare($strExchangeName, $strExchangeType, false,
 ```
 
 
-#### 4.生产者确认
+#### 5.生产者确认
 
 [官方文档](http://www.rabbitmq.com/confirms.html#publisher-confirms)
 
@@ -89,7 +106,7 @@ $this->getChannel()->set_nack_handler(function(AMQPMessage $objMessage) {
 });
 ```
 
-#### 5.代码示例
+#### 6.代码示例
 
 [生产者](https://github.com/beautymyth/rabbitmq-study/blob/master/topic_ha_producer.php)
 
@@ -119,7 +136,13 @@ while (1) {
 }
 ```
 
-#### 2.单条信息获取
+#### 2.消费者逻辑变更
+
+<p>
+标记值变化，处理完消息后就不处理，杀死进程
+</p>
+
+#### 3.单条信息获取
 
 <p>
 为了确保消费者在消费消息时能够进行确认成功消费，每次只能队列中获取一条消息。
@@ -130,7 +153,7 @@ while (1) {
 $this->getChannel()->basic_qos(null, 1, null);
 ```
 
-#### 3.死信队列
+#### 4.死信队列
 
 [官方文档](https://www.rabbitmq.com/dlx.html)
 
@@ -152,7 +175,7 @@ $arrArgument = new Wire\AMQPTable([
 $this->getChannel()->queue_declare($strQueueName, false, true, false, false, false, $arrArgument);
 ```
 
-#### 4.消费者确认
+#### 5.消费者确认
 
 [官方文档](http://www.rabbitmq.com/confirms.html#consumer-acknowledgements)
 
