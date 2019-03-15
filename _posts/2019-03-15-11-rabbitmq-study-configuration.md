@@ -65,17 +65,17 @@ Tips：区别于shell的设置，文件中的变量不需要携带<code>RABBITMQ
 文件及目录相关的配置，<code>$RABBITMQ_HOME</code>为解压的rabbitmq目录。
 </p>
 
-名称 | 默认值 | 说明
----|---|---
-RABBITMQ_CONFIG_FILE | $RABBITMQ_HOME/etc/rabbitmq/rabbitmq.conf | 配置文件路径
-RABBITMQ_MNESIA_BASE | $RABBITMQ_HOME/var/lib/rabbitmq/mnesia | mnesia数据库路径
-RABBITMQ_MNESIA_DIR | $RABBITMQ_MNESIA_BASE/$RABBITMQ_NODENAME | 节点数据路径
-RABBITMQ_LOG_BASE | $RABBITMQ_HOME/var/log/rabbitmq | 日志路径
-RABBITMQ_LOGS | $RABBITMQ_LOG_BASE/$RABBITMQ_NODENAME.log | 节点日志路径
-RABBITMQ_SASL_LOGS | $RABBITMQ_LOG_BASE/$RABBITMQ_NODENAME-sasl.log | 
-RABBITMQ_PLUGINS_DIR | $RABBITMQ_HOME/plugins | 可用组件路径
-RABBITMQ_ENABLED_PLUGINS_FILE | $RABBITMQ_HOME/etc/rabbitmq/enabled_plugins | 已启用组件
-RABBITMQ_PID_FILE | $RABBITMQ_MNESIA_DIR.pid | pid文件
+名称 | 默认值/说明 
+---|---
+RABBITMQ_CONFIG_FILE | $RABBITMQ_HOME/etc/rabbitmq/rabbitmq.conf <br> 配置文件路径 
+RABBITMQ_MNESIA_BASE | $RABBITMQ_HOME/var/lib/rabbitmq/mnesia <br> mnesia数据库路径 
+RABBITMQ_MNESIA_DIR | $RABBITMQ_MNESIA_BASE/$RABBITMQ_NODENAME <br> 节点数据路径
+RABBITMQ_LOG_BASE | $RABBITMQ_HOME/var/log/rabbitmq <br> 日志路径
+RABBITMQ_LOGS | $RABBITMQ_LOG_BASE/$RABBITMQ_NODENAME.log <br> 节点日志路径
+RABBITMQ_SASL_LOGS | $RABBITMQ_LOG_BASE/$RABBITMQ_NODENAME-sasl.log 
+RABBITMQ_PLUGINS_DIR | $RABBITMQ_HOME/plugins <br> 可用组件路径
+RABBITMQ_ENABLED_PLUGINS_FILE | $RABBITMQ_HOME/etc/rabbitmq/enabled_plugins <br> 已启用组件
+RABBITMQ_PID_FILE | $RABBITMQ_MNESIA_DIR.pid <br> pid文件
 
 名称 | 默认值 | 说明
 ---|---|---
