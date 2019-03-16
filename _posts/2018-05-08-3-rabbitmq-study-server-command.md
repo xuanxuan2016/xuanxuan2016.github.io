@@ -15,11 +15,16 @@ tags:
 
 ## rabbitmq-server
 
-#### 1.启动服务
+<p>
+RabbitMQ节点一般指RabbitMQ应用程序和其所在的Erlang节点，当运行在Erlang节点上的应用程序崩溃时，Erlang会自动尝试重启应用程序（前提是Erlang本身没有崩溃）。
+</p>
+
+#### 1.启动节点
+
 
 ```
 #前台启动
-rabbitmq-server start
+rabbitmq-server
 ```
 
 ```
@@ -27,11 +32,21 @@ rabbitmq-server start
 rabbitmq-server -detached
 ```
 
+```
+#增加启动变量
+RABBITMQ_NODE_PORT=5673 rabbitmq-server -detached
+```
+
 ## rabbitmqctl
 
 <p>
 此命令用于管理RabbitMQ节点。
 </p>
+
+```
+#可在指定节点上执行命令
+rabbitmqctl -n nodename commond
+```
 
 <p style="color:red;">
 Tips：如下有些命令，在低版本里会没有。
