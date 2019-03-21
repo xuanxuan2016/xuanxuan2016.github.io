@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "RabbitMQ学习-虚拟主机"
-subtitle:   "prepare-environment"
+subtitle:   "virtual hosts"
 date:       2019-03-12 14:10
 author:     "BeautyMyth"
 header-img: "img/post-bg-2015.jpg"
