@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "RabbitMQ学习-配置"
-subtitle:   "prepare-environment"
+subtitle:   "configuration"
 date:       2019-03-15 15:10
 author:     "BeautyMyth"
 header-img: "img/post-bg-2015.jpg"
