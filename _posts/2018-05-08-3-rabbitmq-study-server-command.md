@@ -626,6 +626,57 @@ list_consumers [-p vhost]
 rabbitmqctl list_consumers
 ```
 
+#### 策略管理
+
+##### set_policy
+
+<p>
+设置主机的策略，默认主机为【/】
+</p>
+
+- -p：虚拟主机
+- --priority：策略优先级，数字越大优先级越高
+- --apply-to：策略应用对象，【queues,exchanges,all】，默认为【all】
+- name：策略名称
+- pattern：匹配的资源名称，使用正则表达式匹配
+- definition：策略定义，使用JSON格式，可参考web管理系统的policies设置页
+
+```
+#命令格式
+set_policy [-p vhost] [--priority priority] [--apply-to apply-to] name pattern definition
+
+#示例
+rabbitmqctl set_policy -p interview ha_policy '^' '{"ha-mode":"all"}'
+```
+
+##### clear_policy
+
+<p>
+删除主机的策略，默认主机为【/】
+</p>
+
+```
+#命令格式
+clear_policy [-p vhost] name
+
+#示例
+clear_policy -p interview ha_policy
+```
+
+##### list_policies
+
+<p>
+显示主机的策略，默认主机为【/】
+</p>
+
+```
+#命令格式
+list_policies [-p vhost]
+
+#示例
+rabbitmqctl list_policies -p interview
+```
+
 ## rabbitmq-plugins
 
 
