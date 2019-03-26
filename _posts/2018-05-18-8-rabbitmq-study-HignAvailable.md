@@ -136,13 +136,92 @@ while (1) {
 }
 ```
 
-#### 2.消费者逻辑变更
+#### 2.消费者正常下线
+
+<p>
+当消费者逻辑需要进行更新时，就需要停止消费者的运行，如果直接将守护进程关闭，可能会导致逻辑处理到一半被终止了，从而产生不可预知的问题。
+</p>
+
+<p>
+可在消费者的回调方法中，增加对标识键的判断，如果存在标识键则处理完此条消息后停止消费消息，同时关闭信道与连接。
+</p>
+
+```
+/**
+ * 消费者是否已停止
+ */
+private function isConsumerStop() {
+    $this->blnConsumerStop = Cache::exec('exists', $this->arrInitParam['redis_key']);
+    return $this->blnConsumerStop;
+}
+```
+
+```
+/**
+ * 信息处理
+ */
+private function dealMessage(AMQPMessage $objMessage) {
+    //消息消费失败是否重进队列
+    $blnIsRequeue = isset($this->arrInitParam['is_requeue']) ? $this->arrInitParam['is_requeue'] : false;
+    //业务确认是否成功
+    $blnAck = $this->receiveMessage($objMessage->body);
+    if ($blnAck) {
+        $objMessage->delivery_info['channel']->basic_ack($objMessage->delivery_info['delivery_tag']);
+    } else {
+        //$objMessage->delivery_info['channel']->basic_nack($objMessage->delivery_info['delivery_tag'], false, $blnReQueue);
+        $objMessage->delivery_info['channel']->basic_reject($objMessage->delivery_info['delivery_tag'], $blnIsRequeue);
+    }
+    //消费者是否需要停止
+    if ($this->isConsumerStop()) {
+        $objMessage->delivery_info['channel']->basic_cancel($objMessage->delivery_info['consumer_tag']);
+    }
+}
+```
+
+```
+/**
+ * 开始运行
+ */
+public function run() {
+    while (1) {
+        try {
+            while (1) {
+                if ($this->blnConsumerStop) {
+                    //消费者已停止
+                    $this->reset();
+                    throw new Exception('consumer stop');
+                } else {
+                    $this->getChannel()->wait();
+                }
+            }
+        } catch (Exception $e) {
+            //消费者已停止
+            if ($this->blnConsumerStop) {
+                break;
+            }
+            //设置错误信息
+            $strErrorMsg = $e->getMessage();
+            $strErrorMsg = sprintf("type:%s\r\n param:%s\r\n error:%s\r\n", $this->getType() . '_run', json_encode($this->arrInitParam), $strErrorMsg);
+            //错误日志记录
+            Log::log($strErrorMsg, Config::get('const.Log.LOG_MQERR'));
+            //重建
+            $this->reset();
+            if (!$this->build($this->arrInitParam)) {
+                //日志记录
+                break;
+            }
+        }
+    }
+}
+```
+
+#### 3.消费者逻辑变更
 
 <p>
 标记值变化，处理完消息后就不处理，杀死进程
 </p>
 
-#### 3.单条信息获取
+#### 4.单条信息获取
 
 <p>
 为了确保消费者在消费消息时能够进行确认成功消费，每次只能队列中获取一条消息。
@@ -153,7 +232,7 @@ while (1) {
 $this->getChannel()->basic_qos(null, 1, null);
 ```
 
-#### 4.死信队列
+#### 5.死信队列
 
 [官方文档](https://www.rabbitmq.com/dlx.html)
 
@@ -175,7 +254,7 @@ $arrArgument = new Wire\AMQPTable([
 $this->getChannel()->queue_declare($strQueueName, false, true, false, false, false, $arrArgument);
 ```
 
-#### 5.消费者确认
+#### 6.消费者确认
 
 [官方文档](http://www.rabbitmq.com/confirms.html#consumer-acknowledgements)
 
@@ -197,6 +276,6 @@ if ($blnAck) {
 }
 ```
 
-#### 5.代码示例
+#### 7.代码示例
 
 [消费者](https://github.com/beautymyth/rabbitmq-study/blob/master/topic_ha_consumer.php)
