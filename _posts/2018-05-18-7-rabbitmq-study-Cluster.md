@@ -31,8 +31,6 @@ tags:
 
 ## 普通集群
 
-[官方文档](https://www.rabbitmq.com/clustering.html)
-
 #### 1.概要
 
 <p>
@@ -40,26 +38,32 @@ tags:
 </p>
 
 <p>
-当节点出现故障时：<br>
+当节点出现故障时：
+</p>
 
 - 消息持久化：当节点恢复时，可获取此节点未消费的消息<br>
 - 消息未持久化：则会丢失此节点上未消费的消息<br>
-</p>
 
 <p>
 当从A节点消费B节点上消息时，会通过消费者消费的队列找到该队列所在的节点，从此节点获取获取后，返回给消费者。
 </p>
 
-<p>
-节点类型：<br>
+
+##### 节点类型
 
 - 内存节点（ram）：队列、交换机、绑定、用户、权限、vhost的元数据都存储在内存中
 - 磁盘节点（disk）：数据存放在磁盘上，磁盘节点需要保存集群的配置信息
-</p>
 
 <p>
 正常使用时都使用磁盘节点，除非需要改进有高队列、交换或绑定的性能集群。RAM节点并不提供更高的消息速率。
 </p>
+
+##### 节点内部元数据
+
+- 队列元数据：队列名称和它们的属性（是否可持久化，是否自动删除）
+- 交换器元数据：交换器名称，类型和属性（是否持久化等）
+- 绑定元数据：一张简单的表格展示了如何将消息路由到队列
+- vhost元数据：为虚拟主机内的队列，交换器和绑定提供命名空间和安全属性
 
 #### 2.hosts配置
 
@@ -373,8 +377,6 @@ Setting tags for user "admin" to [administrator]
 
 ## 镜像集群
 
-[官方文档](https://www.rabbitmq.com/ha.html)
-
 #### 1.概要
 
 <p>
@@ -383,6 +385,10 @@ Setting tags for user "admin" to [administrator]
 
 <p>
 由于需要进行节点间的同步，所以镜像集群在性能方面会降低；如果镜像队列数量过多，加之大量的消息进入，集群内部的网络带宽将会被这种同步通讯大量消耗。所以这种模式应用于可靠性要求较高的场合中。
+</p>
+
+<p style="color:red;">
+Tips：如果将消息存储置于SSD的话，就可以极大提升持久化消息通信的性能。
 </p>
 
 #### 2.如何配置
@@ -453,3 +459,9 @@ Listing policies
 ![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2018-05-18-7-rabbitmq-study-Cluster/20180526190556.png?raw=true)
 
 ![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2018-05-18-7-rabbitmq-study-Cluster/20180526190945.png?raw=true)
+
+## 参考资料
+
+[普通集群](https://www.rabbitmq.com/clustering.html)
+
+[镜像集群](https://www.rabbitmq.com/ha.html)
