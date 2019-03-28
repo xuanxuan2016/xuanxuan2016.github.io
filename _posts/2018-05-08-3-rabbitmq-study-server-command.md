@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "RabbitMQ学习（三）-服务器命令"
+title:      "RabbitMQ学习-服务器命令"
 subtitle:   "server-command"
 date:       2018-05-08 19:50
 author:     "BeautyMyth"
