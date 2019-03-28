@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "RabbitMQ学习（一）-环境准备"
+title:      "RabbitMQ学习-环境准备"
 subtitle:   "prepare-environment"
 date:       2018-05-08 13:50
 author:     "BeautyMyth"
