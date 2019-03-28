@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "RabbitMQ学习（七）-集群"
+title:      "RabbitMQ学习-集群"
 subtitle:   "cluster"
 date:       2018-05-18 20:50
 author:     "BeautyMyth"
