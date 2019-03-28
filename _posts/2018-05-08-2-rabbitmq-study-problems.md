@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "RabbitMQ学习（二）-遇到的问题"
+title:      "RabbitMQ学习-遇到的问题"
 subtitle:   "problems"
 date:       2018-05-08 18:50
 author:     "BeautyMyth"
