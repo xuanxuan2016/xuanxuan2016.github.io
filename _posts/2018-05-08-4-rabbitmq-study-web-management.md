@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "RabbitMQ学习（四）-web管理页面"
+title:      "RabbitMQ学习-web管理页面"
 subtitle:   "web-management"
 date:       2018-05-08 20:50
 author:     "BeautyMyth"
