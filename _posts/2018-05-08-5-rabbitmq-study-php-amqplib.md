@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "RabbitMQ学习（五）-php-amqplib"
+title:      "RabbitMQ学习-php-amqplib"
 subtitle:   "php-amqplib"
 date:       2018-05-08 20:50
 author:     "BeautyMyth"
