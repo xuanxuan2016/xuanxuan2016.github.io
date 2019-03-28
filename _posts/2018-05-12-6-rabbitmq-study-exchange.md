@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "RabbitMQ学习（六）-交换器"
+title:      "RabbitMQ学习-交换器"
 subtitle:   "exchange"
 date:       2018-05-12 20:50
 author:     "BeautyMyth"
