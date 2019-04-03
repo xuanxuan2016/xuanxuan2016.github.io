@@ -67,6 +67,121 @@ rabbitmqctl -n nodename commond
 Tips：如下有些命令，在低版本里会没有。
 </p>
 
+#### 集群管理
+
+##### join_cluster
+
+<p>
+将当前节点添加到集群中，使用此命令前需要先停止节点应用。
+</p>
+
+- clusternode：现有集群中的任意节点
+- --ram：标记新加入的节点是否为内存节点，默认为磁盘节点
+
+```
+#命令格式
+join_cluster clusternode [--ram]
+
+#示例
+rabbitmqctl stop_app
+rabbitmqctl join_cluster rabbit@DEV-HROEx64
+rabbitmqctl start_app
+```
+
+##### cluster_status
+
+<p>
+查看集群状态。
+</p>
+
+```
+#命令格式
+cluster_status
+
+#示例
+rabbitmqctl cluster_status
+```
+
+##### change_cluster_node_type
+
+<p>
+修改集群节点类型，使用此命令前需要先停止节点应用。
+</p>
+
+- type：disc或ram
+
+```
+#命令格式
+change_cluster_node_type type
+
+#示例
+rabbitmqctl stop_app
+rabbitmqctl change_cluster_node_type disc
+rabbitmqctl start_app
+```
+
+##### forget_cluster_node
+
+<p>
+远程从集群中移除节点，被移除的节点需要处于离线状态，操作的节点需要处于在线状态，除非使用<code>--offline</code>参数。
+</p>
+
+- --offline：允许从离线节点中远程删除其它节点
+
+```
+#命令格式
+forget_cluster_node [--offline]
+
+#示例
+rabbitmqctl forget_cluster_node rabbit@DEV-mHRO
+```
+
+##### sync_queue
+
+<p>
+同步集群中状态为未同步的队列，此命令将导致队列阻塞，发布者与消费者将不能使用此队列。
+</p>
+
+<p>
+如果未同步的队列有正常消费者消费消息的话，队列最终会变为同步的。此命令主要用于不活动的队列。
+</p>
+
+```
+#命令格式
+sync_queue [-p vhost] queue
+
+#示例
+rabbitmqctl sync_queue jobseek_confirm_type1
+```
+
+##### cancel_sync_queue
+
+<p>
+停止队列的同步。
+</p>
+
+```
+#命令格式
+cancel_sync_queue [-p vhost] queue
+
+#示例
+rabbitmqctl cancel_sync_queue jobseek_confirm_type1
+```
+
+##### purge_queue
+
+<p>
+清空队列中的消息。
+</p>
+
+```
+#命令格式
+purge_queue [-p vhost] queue
+
+#示例
+rabbitmqctl purge_queue jobseek_confirm_type1
+```
+
 #### 用户管理
 
 ##### add_user
