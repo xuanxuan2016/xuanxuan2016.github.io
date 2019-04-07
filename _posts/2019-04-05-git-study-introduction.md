@@ -622,3 +622,5 @@ Fast-forward
 [git文档](https://git-scm.com/docs)
 
 [廖雪峰教程](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
+
+[git-cheatsheet](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2019-04-05-git-study-introduction/git-cheatsheet.pdf)
