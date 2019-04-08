@@ -50,7 +50,7 @@ C:\Users(用户)\$USER\.gitconfig
 如果使用GitHub作为代码服务器，为了能与其进行交互，需要创建SSK key并配置到GitHub上。
 </p>
 
-###### 1.创建SSH Key
+**1.创建SSH Key**
 
 ```linux
 #一路回车就可以
@@ -63,7 +63,7 @@ total 9
 -rw-r--r-- 1 beautymyth 197121  398 三月   21 06:23 id_rsa.pub
 ```
 
-###### 2.将Key添加到GitHub
+**2.将Key添加到GitHub**
 
 <p>
 右上角用户->设置->SSH and GPG keys->New SSH Key。将<code>id_rsa.pub</code>里的内容填写进去。
@@ -112,7 +112,7 @@ $ git config --global user.email "email@example.com"
 如果使用GitHub作为代码服务器，为了能与其进行交互，需要创建SSK key并配置到GitHub上。
 </p>
 
-###### 1.创建SSH Key
+**1.创建SSH Key**
 
 ```linux
 #一路回车就可以
@@ -125,7 +125,7 @@ total 12
 -rw-r--r-- 1 root root  398 Apr  7 10:59 id_rsa.pub
 ```
 
-###### 2.将Key添加到GitHub
+**2.将Key添加到GitHub**
 
 <p>
 右上角用户->设置->SSH and GPG keys->New SSH Key。将<code>id_rsa.pub</code>里的内容填写进去。
