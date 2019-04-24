@@ -696,7 +696,7 @@ config_file:/usr/local/redis/redis.conf
 		</tr>
 		<tr>
 			<td>timeout</td>
-			<td>客户端限制多久自动关闭连接(s)</td>
+			<td>客户端闲置多久自动关闭连接(s)</td>
 			<td>0</td>
 			<td>整数</td>
 			<td>yes</td>
