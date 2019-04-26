@@ -32,7 +32,7 @@ tags:
 </p>
 
 <p>
-每次pconnect会根据<code>标识id</code>在当前运行的httpd或php-fpm进程中查找已存在的连接，如果存在则复用连接，否则新建连接；脚本运行结束之后不会自动断开连接，连接会保留在httpd或php-fpm进程中，除非进程关闭或连接空闲时间达到redis设置的timeout（timeout=0为永不超时）。
+每次pconnect会根据<code>标识id</code>在当前运行的httpd（指通过mpm模块创建出来的进程，web请求会被发送到这些进行进程处理，这些进程可处理多次web请求）或php-fpm进程中查找已存在的连接，如果存在则复用连接，否则新建连接；脚本运行结束之后不会自动断开连接，连接会保留在httpd或php-fpm进程中，除非进程关闭或连接空闲时间达到redis设置的timeout（timeout=0为永不超时）。
 </p>
 
 <p>
