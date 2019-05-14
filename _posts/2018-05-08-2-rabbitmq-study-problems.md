@@ -215,6 +215,69 @@ You have mail in /var/spool/mail/root
 
 ![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2018-05-08-2-rabbitmq-study-problems/20180519121122.png?raw=true)
 
+#### 2.消费者中使用生产者
+
+<p>
+业务需要在第1级的消费者中生产供第2级消费者使用的消息，在持续生产消息时出现了如下异常。
+</p>
+
+```
+Memo:[
+ errno:2 
+ errstr:socket_write(): unable to write to socket [32]: Broken pipe 
+ errfile:/vagrant/htdocs/Interview2/framework/Service/Lib/PhpAmqpLib/Wire/IO/SocketIO.php 
+ errline:163 
+]
+Trace:[文件：/vagrant/htdocs/Interview2/framework/Service/Log/Log.php，方法：getBackTrace，行号：58
+文件：/vagrant/htdocs/Interview2/framework/Service/Foundation/BootStrap/HandleExceptions.php，方法：log，行号：61
+文件：，方法：handleError，行号：
+文件：/vagrant/htdocs/Interview2/framework/Service/Lib/PhpAmqpLib/Wire/IO/SocketIO.php，方法：socket_write，行号：163
+文件：/vagrant/htdocs/Interview2/framework/Service/Lib/PhpAmqpLib/Connection/AbstractConnection.php，方法：write，行号：320
+文件：/vagrant/htdocs/Interview2/framework/Service/Lib/PhpAmqpLib/Connection/AbstractConnection.php，方法：write，行号：432
+文件：/vagrant/htdocs/Interview2/framework/Service/Lib/PhpAmqpLib/Channel/AbstractChannel.php，方法：send_channel_method_frame，行号：224
+文件：/vagrant/htdocs/Interview2/framework/Service/Lib/PhpAmqpLib/Channel/AMQPChannel.php，方法：send_method_frame，行号：1165
+文件：/vagrant/htdocs/Interview2/framework/Service/MessageQueue/QueueProducerBase.php，方法：confirm_select，行号：58
+文件：/vagrant/htdocs/Interview2/app/Service/MessageQueue/Producer/SendMsgProcuder.php，方法：build，行号：35
+文件：/vagrant/htdocs/Interview2/app/Service/MessageQueue/Producer/SendMsgProcuder.php，方法：init，行号：45
+```
+
+<p>
+问题查找与分析：
+</p>
+
+- 1.此异常说明在向服务器publish消息时，连接已经断开了，断开可能原因如下
+- 1.1.由于过了心跳时间（生产者不能像消费者那样一直与服务器交互，发完消息就没有交互了），服务器主动断开了连接
+- 1.2.多次publish消息使用同一个channel
+
+<p>
+解决方法：
+</p>
+
+- 1.同一个连接每次publish消息时，都创建新的channel，并刷新连接空闲时间
+- 2.当连接中channel数超过1W或连接闲置一定时间时，重新创建连接
+
+```
+protected function producerReset() {
+    //重置信道
+    $this->objChannel = null;
+
+    //计数，当channel超过一定数量后重置连接
+    if ($this->intCurChannelNum >= 10000) {
+        $this->intCurChannelNum = 0;
+        $this->objConnection = null;
+    }
+    $this->intCurChannelNum += 1;
+
+    //计时，当连接闲置一段时间后重置连接
+    if (!is_null($this->intLastConnectTime) && (time() - $this->intLastConnectTime >= 2 * $this->intHeartbeat - 2)) {
+        $this->objConnection = null;
+    }
+
+    //刷新连接最近使用时间
+    $this->intLastConnectTime = time();
+}
+```
+
 ## 参数绑定问题
 
 #### 1.死信队列绑定参数失败
