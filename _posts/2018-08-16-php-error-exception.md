@@ -248,4 +248,6 @@ protected function isFatal($strType) {
 
 [php异常处理](https://www.cnblogs.com/zyf-zhaoyafei/p/6928149.html)
 
+[PHP7中的异常与错误处理](https://novnan.github.io/PHP/throwable-exceptions-and-errors-in-php7/)
+
 [apache访问日志access_log](https://blog.csdn.net/zonghua521/article/details/78240038?locationNum=9&fps=1)
