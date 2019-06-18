@@ -20,8 +20,6 @@ tags:
 
 此库是使用纯php实现的AMQP 0-9-1协议，通过它可以让我们很方便的来使用rabbitmq的功能。
 
-## UML
-
 ## 使用方法
 
 这里以一个简单的exchange=redirect的例子，来通过代码演示怎么实现生产者与消费者。
@@ -93,12 +91,47 @@ while (count($objChannel->callbacks)) {
 
 ```
 
-## 代码解析
+## 代码结构
 
-对类库中的一些代码进行跟踪分析，以便能更好的理解使用。
+#### 类的归类
 
-#### 1.AMQPChannel->AbstractChannel->wait()
+[戳这里看详细说明](http://naotu.baidu.com/file/31363a3566b1fdffedb4693cb3cc679b?token=6679f43790e2f5dc)
 
-阻塞等待rabbit服务器推送消息过来，如果接受到消息则调用回调方法处理，处理好后继续阻塞等待。
+![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2018-05-08-6-rabbitmq-study-php-amqplib/class_relation.png?raw=true)
 
-![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2018-05-08-6-rabbitmq-study-php-amqplib/AMQPChannel-_AbstractChannel-_wait.png?raw=true)
+#### UML
+
+![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2018-05-08-6-rabbitmq-study-php-amqplib/uml_combine_1.png?raw=true)
+
+## 代码流程
+
+#### 创建connection
+
+![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2018-05-08-6-rabbitmq-study-php-amqplib/connection_flow.png?raw=true)
+
+#### 创建channel
+
+![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2018-05-08-6-rabbitmq-study-php-amqplib/channel_flow.png?raw=true)
+
+#### wait处理
+
+![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2018-05-08-6-rabbitmq-study-php-amqplib/wait_flow.png?raw=true)
+
+#### 发送消息(producer)
+
+![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2018-05-08-6-rabbitmq-study-php-amqplib/producer_flow.png?raw=true)
+
+#### 接收消息(consumer)
+
+![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2018-05-08-6-rabbitmq-study-php-amqplib/consumer_flow.png?raw=true)
+
+## 代码注释
+
+[戳这里看代码注释](https://github.com/beautymyth/rabbitmq-study/tree/master/Lib/PhpAmqpLib)
+
+## 参考资料
+
+[消费者应答和发送者确认](https://www.jianshu.com/p/c0bfe198739e)
+
+
+
