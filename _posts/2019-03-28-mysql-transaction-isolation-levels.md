@@ -316,3 +316,7 @@ mysql> set @@global.tx_isolation = 'read-uncommitted';
 [Transaction Isolation Levels](https://dev.mysql.com/doc/refman/5.7/en/innodb-transaction-isolation-levels.html)
 
 [SET TRANSACTION Syntax](https://dev.mysql.com/doc/refman/5.7/en/set-transaction.html)
+
+[innodb下的记录锁，间隙锁，next-key锁](https://www.jianshu.com/p/bf862c37c4c9)
+
+[MySQL字符集及校对规则的理解](https://www.cnblogs.com/geaozhang/p/6724393.html?utm_source=itdadao&utm_medium=referral)
