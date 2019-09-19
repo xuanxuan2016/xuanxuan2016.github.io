@@ -31,6 +31,10 @@ tags:
 通过<a href="https://github.com/PHPOffice/PHPWord" target="_blank">PHPWord库</a>打开word文件，然后转存为pdf文件。
 </p>
 
+<p>
+上面的方法可能会不行，可通过<a href="https://www.cnblogs.com/ruozhu/p/11190195.html" target='_blank'>这种</a>方法。
+</p>
+
 ```
 require_once 'bootstrap.php';
 use PhpOffice\PhpWord\Settings;
