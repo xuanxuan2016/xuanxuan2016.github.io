@@ -19,6 +19,10 @@ tags:
 此文是<code>大型网站技术架构</code>的读书笔记，本书说明了大型网站架构需要包含的相关要素，并对每个要素进行分类讲解。
 </p>
 
+#### 架构设计一般规律
+
+![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2019-08-11-large-web-architecture/tu_1.png?raw=true)
+
 ## 概述
 
 #### 架构模式
@@ -582,8 +586,6 @@ CAP（不能同时满足如下所有情况）:
 - 黑名单：将需要过滤信息的关键字，添加到黑名单，之后可通过黑名单进行查找过滤。
 
 ##### 电子商务风险
-
-
 
 ## 参考资料
 
