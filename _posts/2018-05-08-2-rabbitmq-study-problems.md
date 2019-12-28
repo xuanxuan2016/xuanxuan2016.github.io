@@ -245,36 +245,71 @@ Trace:[文件：/vagrant/htdocs/Interview2/framework/Service/Log/Log.php，方�
 问题查找与分析：
 </p>
 
-- 1.此异常说明在向服务器publish消息时，连接已经断开了，断开可能原因如下
+- 1.此warning说明在向服务器publish消息时，连接已经断开了，断开可能原因如下
 - 1.1.由于过了心跳时间（生产者不能像消费者那样一直与服务器交互，发完消息就没有交互了），服务器主动断开了连接
-- 1.2.多次publish消息使用同一个channel
 
 <p>
 解决方法：
 </p>
 
-- 1.同一个连接每次publish消息时，都创建新的channel，并刷新连接空闲时间
-- 2.当连接中channel数超过1W或连接闲置一定时间时，重新创建连接
+- 1.当推送消息出现异常时，增加重试功能
+- 2.在推送消息函数中，增加局部error捕捉函数，捕捉此类warning进行过滤
 
 ```
-protected function producerReset() {
-    //重置信道
-    $this->objChannel = null;
-
-    //计数，当channel超过一定数量后重置连接
-    if ($this->intCurChannelNum >= 10000) {
-        $this->intCurChannelNum = 0;
-        $this->objConnection = null;
+/**
+ * 初始化连接
+ * @param bool $blnTry 当前是否为重试执行
+ * @return boolean true：成功 false：失败
+ */
+private function init($blnTry = false) {
+    try {
+        if ($this->isNeedInit()) {
+            //1.获取连接参数
+            $arrInitParam = $this->getInitParam();
+            if (empty($arrInitParam)) {
+                throw new Exception('获取初始化参数失败');
+            }
+            //2.重置连接
+            $this->reset();
+            //3.连接
+            $this->build($arrInitParam);
+            //4.更新连接标记
+            $this->blnIsInit = true;
+        }
+        //5.返回
+        $this->intLastCallTime = time();
+        return true;
+    } catch (Throwable $e) {
+        //更新连接标记
+        $this->blnIsInit = false;
+        //异常重试一次
+        if ($blnTry == false) {
+            return $this->init(true);
+        }
+        //设置错误信息
+        $strErrorMsg = $e->getMessage();
+        $strErrorMsg = sprintf("type:%s\r\n param:%s\r\n error:%s\r\n istry:%s\r\n", $this->getType() . '_init', json_encode($arrInitParam), $strErrorMsg, $blnTry);
+        //错误日志记录
+        Log::log($strErrorMsg, Config::get('const.Log.LOG_MQERR'));
+        //返回false
+        return false;
     }
-    $this->intCurChannelNum += 1;
+}
 
-    //计时，当连接闲置一段时间后重置连接
-    if (!is_null($this->intLastConnectTime) && (time() - $this->intLastConnectTime >= 2 * $this->intHeartbeat - 2)) {
-        $this->objConnection = null;
+/**
+ * 是否需要重连
+ */
+private function isNeedInit() {
+    //1.强制重连
+    if (!$this->blnIsInit) {
+        return true;
     }
-
-    //刷新连接最近使用时间
-    $this->intLastConnectTime = time();
+    //2.超过心跳时间
+    //2.1.此判断同时也可解决极限情况下消息重复推送的问题，底层write成功但是read失败(超过心跳)，导致业务层的重试引起消息重复推送
+    if (time() - $this->intLastCallTime > $this->intHeartbeat / 2) {
+        return true;
+    }
+    return false;
 }
 ```
 
