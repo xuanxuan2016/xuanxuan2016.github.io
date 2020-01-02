@@ -141,7 +141,11 @@ Starting RabbitMQ 3.7.13 on Erlang 20.3
 </p>
 
 <p>
-老格式配置示例
+老格式配置示例(config)
+</p>
+
+<p style="color:red;">
+Tips：最后的【.】不能缺少。
 </p>
 
 ```linux
@@ -151,11 +155,11 @@ Starting RabbitMQ 3.7.13 on Erlang 20.3
                            {keyfile,              "/path/to/server_key.pem"},
                            {verify,               verify_peer},
                            {fail_if_no_peer_cert, true}]}]}
-]
+].
 ```
 
 <p>
-新格式配置示例
+新格式配置示例(conf)
 </p>
 
 ```linux
