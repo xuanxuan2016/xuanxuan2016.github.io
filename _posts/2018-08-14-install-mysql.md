@@ -180,6 +180,10 @@ export PATH=$PATH:/usr/local/mysql/bin
 将mysql服务复制到<code>/etc/init.d</code>
 </p>
 
+<p>
+启动过程中如果失败，查看日志<code>/mysql/logs/error.err</code>报<code>unknown variable</code>，先把相关的变量注释掉。
+</p>
+
 ```
 [root@vagrant init.d]# cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld
 [root@vagrant init.d]# service mysqld start
