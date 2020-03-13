@@ -220,7 +220,10 @@ mysql> alter user 'root'@'localhost' IDENTIFIED BY '123456';
 </p>
 
 ```
+#指定用户ip
 create user test@127.0.0.1 identified by '123456';
+#不指定用户ip
+create user 'test'@'%' identified by '123456';
 ```
 
 <p>
