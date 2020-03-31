@@ -50,6 +50,10 @@ tags:
 因为使用的框架非标准laravel框架，es库需要集成到框架的<code>Framework\Service\Lib</code>命名空间下，需要进行如下的修改：
 </p>
 
+<p style='color:red;'>
+1.后续框架支持了psr4的加载，可以不做如下命名空间的修改，只需要进行配置即可
+</p>
+
 ##### 复制类库
 
 ```
@@ -308,12 +312,15 @@ $arrRst = $objClient->search([
 
 #### 类的归类
 
+[戳这里看](http://naotu.baidu.com/file/361c25971393fe626aba481691a79686?token=fc831e2f612b07db)
 
 #### UML
 
-
+![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2019-07-31-20-php-elasticsearch/tu_1.png?raw=true)
 
 ## 代码流程
+
+![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2019-07-31-20-php-elasticsearch/tu_2.png?raw=true)
 
 ## 代码注释
 
