@@ -159,7 +159,21 @@ i18n.locale: "zh-CN"
 [elk@DEV-interview1 bmsource]$ ./kibana-7.0.1-linux-x86_64/bin/kibana
 
 #后台启动
-[elk@DEV-interview1 bmsource]$ nohup ./kibana-7.0.1-linux-x86_64/bin/kibana &
+[elk@DEV-interview1 bmsource]$ nohup ./kibana-7.0.1-linux-x86_64/bin/kibana >/dev/null 2>&1 &
+```
+
+##### 关闭
+
+```
+#查看kibana进程
+[elk@DEV-interview1 kibana]$ lsof -i:5601
+COMMAND  PID USER   FD   TYPE    DEVICE SIZE/OFF NODE NAME
+node    6089  elk   18u  IPv4 503997785      0t0  TCP mapidev.51job.com:esmagent (LISTEN)
+
+[elk@DEV-interview1 bmsource]$ ps -ef|grep node
+
+#杀掉进程
+[elk@DEV-interview1 bmsource]$ kill -9 6089
 ```
 
 #### LogStash
@@ -305,3 +319,7 @@ xpack.security.sessionTimeout: 600000
 [Installation（安装）](http://cwiki.apachecn.org/pages/viewpage.action?pageId=4260676)
 
 [Kibana安全特性之权限控制](https://www.cnblogs.com/cjsblog/p/9501858.html)
+
+[nohup 详解](https://www.cnblogs.com/jinxiao-pu/p/9131057.html)
+
+[linux shell中"2>&1"含义](https://www.cnblogs.com/zhenghongxin/p/7029173.html)
