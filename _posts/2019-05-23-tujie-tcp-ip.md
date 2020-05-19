@@ -941,3 +941,5 @@ MIB（Management Information Base）：SNMP中交互的信息，是在树形结�
 ## 参考资料
 
 [图解TCP/IP](https://item.jd.com/11253710.html)
+
+[详解TCP连接的“三次握手”与“四次挥手”](https://www.cnblogs.com/AhuntSun-blog/p/12028636.html)
