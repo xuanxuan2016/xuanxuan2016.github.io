@@ -150,8 +150,11 @@ private function releaseEasyHandle($handle) {
             CURLOPT_PROGRESSFUNCTION => null,
         ];
         curl_setopt_array($handle, $unsetValues);
-        $this->optreset($handle);
-        //curl_reset($handle);
+        if (getCid() < 0) {
+            curl_reset($handle);
+        } else {
+            $this->optreset($handle);
+        }
         $this->ownedHandles[$id] = false;
     }
 }
