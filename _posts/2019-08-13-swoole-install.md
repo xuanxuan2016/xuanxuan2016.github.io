@@ -50,7 +50,7 @@ g++ (GCC) 4.8.2 20131212 (Red Hat 4.8.2-8)
 
 [资源](https://github.com/swoole/swoole-src/releases)
 
-#### 安装
+#### 编译安装
 
 <p>
 swoole的版本会依赖php的版本，这里机器php是7.0的所以安装了swoole-4.2.11版本。
@@ -73,6 +73,18 @@ Installing header files:          /usr/include/php/
 
 #在php.ini添加引用
 extension=swoole.so
+```
+
+#### rpm安装
+
+[资源](https://mirror.tuna.tsinghua.edu.cn/remi/enterprise/7/php73/x86_64/repoview/php-pecl-swoole4.html)
+
+```
+#安装
+rpm -ivh /www/hdocs/bmsource/php-pecl-swoole4-4.4.17-1.el7.remi.7.3.x86_64.rpm
+
+#升级
+rpm -Uvh /www/htdocs/bmsource/php-pecl-swoole4-4.4.17-1.el7.remi.7.3.x86_64.rpm
 ```
 
 ## 参考资料
