@@ -80,7 +80,7 @@ extension=swoole.so
 [资源](https://mirror.tuna.tsinghua.edu.cn/remi/enterprise/7/php73/x86_64/repoview/php-pecl-swoole4.html)
 
 ```
-#安装
+#安装 
 rpm -ivh /www/hdocs/bmsource/php-pecl-swoole4-4.4.17-1.el7.remi.7.3.x86_64.rpm
 
 #升级
