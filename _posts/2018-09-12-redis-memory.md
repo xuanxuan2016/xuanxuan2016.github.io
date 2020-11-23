@@ -505,6 +505,8 @@ Tips：编码类型的转换是写入redis数据时自动进行的，且转换�
 
 ## 参考资料
 
+[Redis容量预估](http://www.redis.cn/redis_memory/)
+
 [redis开发与运维](http://item.jd.com/12121730.html?spm=1.1.1)
 
 [linux写时复制](https://www.cnblogs.com/wuchanming/p/4495479.html)
