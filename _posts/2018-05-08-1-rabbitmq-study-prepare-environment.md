@@ -157,6 +157,11 @@ rabbitmq使用mnesia数据库存储服务器信息，如队列元数据，虚拟
 /usr/local/rabbitmq/var/lib/rabbitmq/mnesia/节点名称
 ```
 
+## 版本升级日志
+
+- [3.8.0](https://github.com/rabbitmq/rabbitmq-server/releases/tag/v3.8.0)
+- [3.7.0](https://github.com/rabbitmq/rabbitmq-server/releases/tag/v3.7.0)
+
 ## 参考资料
 
 [官方安装说明](https://www.rabbitmq.com/install-generic-unix.html)
