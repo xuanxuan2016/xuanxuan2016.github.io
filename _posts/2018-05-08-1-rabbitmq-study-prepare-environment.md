@@ -27,6 +27,11 @@ tags:
 [root@iZwz9i8fd8lio2yh3oerizZ bmsource]# tar -xvf otp_src_20.3.tar.gz
 ```
 
+<p>安装依赖</p>
+```linux
+[root@iZwz9i8fd8lio2yh3oerizZ bmsource]# yum install openssl openssl-devel
+```
+
 #### 2.完成安装
 将erlang安装到<code>/usr/local/erlang</code>目录。
 
@@ -151,3 +156,7 @@ rabbitmq使用mnesia数据库存储服务器信息，如队列元数据，虚拟
 ```linux
 /usr/local/rabbitmq/var/lib/rabbitmq/mnesia/节点名称
 ```
+
+## 参考资料
+
+[官方安装说明](https://www.rabbitmq.com/install-generic-unix.html)
