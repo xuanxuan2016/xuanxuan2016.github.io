@@ -157,6 +157,36 @@ rabbitmq使用mnesia数据库存储服务器信息，如队列元数据，虚拟
 /usr/local/rabbitmq/var/lib/rabbitmq/mnesia/节点名称
 ```
 
+#### 5.配置文件
+
+<p>
+为了方便后续的配置修改，可先创建好相应的配置文件。
+</p>
+
+```
+#环境变量文件
+#/usr/local/rabbitmq/etc/rabbitmq/rabbitmq-env.conf
+```
+
+```
+#主配置文件
+#/usr/local/rabbitmq/etc/rabbitmq/rabbitmq.conf
+```
+
+```
+#可选配置文件(用于配置主配置文件中不能配置的参数)
+#/usr/local/rabbitmq/etc/rabbitmq/advanced.config
+#空文件内容如下
+[
+].
+```
+
+#### 6.启动
+
+```
+rabbitmq-server -detached
+```
+
 ## 版本升级日志
 
 - [3.8.0](https://github.com/rabbitmq/rabbitmq-server/releases/tag/v3.8.0)

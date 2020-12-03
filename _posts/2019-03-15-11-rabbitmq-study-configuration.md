@@ -182,9 +182,9 @@ ssl_options.fail_if_no_peer_cert = true
 
 #### 可设置变量
 
-[rabbitmq.conf配置示例](https://github.com/rabbitmq/rabbitmq-server/blob/master/docs/rabbitmq.conf.example)
+[rabbitmq.conf配置示例](https://github.com/rabbitmq/rabbitmq-server/blob/v3.8.x/deps/rabbit/docs/rabbitmq.conf.example)
 
-[advanced.config配置示例](https://github.com/rabbitmq/rabbitmq-server/blob/master/docs/advanced.config.example)
+[advanced.config配置示例](https://github.com/rabbitmq/rabbitmq-server/blob/v3.8.x/deps/rabbit/docs/advanced.config.example)
 
 ## 参考资料
 
