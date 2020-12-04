@@ -19,6 +19,140 @@ tags:
 rabbitmq在启动时会使用很多默认的配置，这些配置一般在开发或测试环境是可以的。当在线上环境时，某些配置可能需要根据实际情况进行调整。
 </p>
 
+<p>
+主要有如下几种配置方式，大部分配置都是使用前2种方式：
+</p>
+
+- 配置文件
+- 环境变量
+- 针对插件或特定功能的配置
+
+## 配置文件
+
+<p>
+虽然RabbitMQ中的某些设置可以使用环境变量进行配置，但大多数设置都是使用配置文件配置的，如rabbitmq.conf、advanced.config，包括核心服务器和插件的配置。
+</p>
+
+#### 配置文件位置
+
+<p>
+根据不同的安装方式，配置文件一般在<code>/etc/rabbitmq/</code>或<code>{rabbit_install_dir}/etc/rabbitmq/</code>，如果不存在的话可手动创建。
+</p>
+
+<p>
+在rabbitmq启动时，可在日志文件的顶部查看加载的配置文件路径。
+</p>
+
+```linux
+Starting RabbitMQ 3.7.13 on Erlang 20.3
+ Copyright (C) 2007-2019 Pivotal Software, Inc.
+ Licensed under the MPL.  See http://www.rabbitmq.com/
+2019-03-16 13:57:13.007 [info] <0.256.0> 
+ node           : rabbit@vagrant
+ home dir       : /root
+ config file(s) : /usr/local/rabbitmq/etc/rabbitmq/rabbitmq.conf
+ cookie hash    : OIhbODu2Q0A6XyOqVBfFrA==
+ log(s)         : /usr/local/rabbitmq/var/log/rabbitmq/rabbit@vagrant.log
+                : /usr/local/rabbitmq/var/log/rabbitmq/rabbit@vagrant_upgrade.log
+ database dir   : /usr/local/rabbitmq/var/lib/rabbitmq/mnesia/rabbit@vagrant
+```
+
+<p>
+如果开启web管理页面的话，也可以在节点的信息中查看配置文件路径。
+</p>
+
+![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2019-03-15-11-rabbitmq-study-configuration/20190316140308.png?raw=true)
+
+#### 手动创建配置文件
+
+<p>
+这里以通用的二进制包安装举例
+</p>
+
+```
+#环境变量文件
+#/usr/local/rabbitmq/etc/rabbitmq/rabbitmq-env.conf
+```
+
+```
+#主配置文件
+#/usr/local/rabbitmq/etc/rabbitmq/rabbitmq.conf
+```
+
+```
+#可选配置文件(用于配置主配置文件中不能配置的参数)
+#/usr/local/rabbitmq/etc/rabbitmq/advanced.config
+#空文件内容如下
+[
+].
+```
+
+#### 配置文件格式
+
+<p>
+在RabbitMQ 3.7.0之前，RabbitMQ配置文件使用<a href="http://erlang.org/doc/man/config.html" traget="_blank">Erlang术语</a>配置格式，新版本仍然支持该格式以实现向后兼容性。不过建议运行3.7.0或更高版本的用户考虑新的sysctl格式。
+</p>
+
+<p>
+老格式配置示例(config)
+</p>
+
+<p style="color:red;">
+Tips：最后的【.】不能缺少。
+</p>
+
+```linux
+[
+  {rabbit, [{ssl_options, [{cacertfile,           "/path/to/testca/cacert.pem"},
+                           {certfile,             "/path/to/server_certificate.pem"},
+                           {keyfile,              "/path/to/server_key.pem"},
+                           {verify,               verify_peer},
+                           {fail_if_no_peer_cert, true}]}]}
+].
+```
+
+<p>
+新格式配置示例(conf)
+</p>
+
+```linux
+ssl_options.cacertfile           = /path/to/testca/cacert.pem
+ssl_options.certfile             = /path/to/server_certificate.pem
+ssl_options.keyfile              = /path/to/server_key.pem
+ssl_options.verify               = verify_peer
+ssl_options.fail_if_no_peer_cert = true
+```
+
+<p>
+新格式虽然易于理解与编辑，但是如果需要使用深层嵌套的数据结构来表达配置时，还是需要使用老格式的方式，如<a href="https://www.rabbitmq.com/ldap.html" traget="_blank">LDAP功能</a>。
+</p>
+
+#### 配置查看
+
+<p>
+使用rabbitmq-diagnostics environment命令可以打印有效配置(用户从所有配置文件中提供的值与默认值的合并):
+</p>
+
+```
+#当前节点
+rabbitmq-diagnostics environment
+#指定节点
+rabbitmq-diagnostics environment -n [node name]
+```
+
+<p>
+上面的命令将打印在节点上运行的每个应用程序(RabbitMQ、插件、库)的应用配置。有效配置使用以下步骤计算:
+</p>
+
+- rabbitmq.conf，转换为内部使用的(高级)配置格式。这些配置合并到默认值中
+- advanced.config，如果存在，则加载，并合并到上面步骤的结果中
+
+#### 可设置变量
+
+[rabbitmq.conf配置示例](https://github.com/rabbitmq/rabbitmq-server/blob/v3.8.x/deps/rabbit/docs/rabbitmq.conf.example)
+
+[advanced.config配置示例](https://github.com/rabbitmq/rabbitmq-server/blob/v3.8.x/deps/rabbit/docs/advanced.config.example)
+
 ## 环境变量
 
 <p>
@@ -98,93 +232,6 @@ RABBITMQ_CONFIG_FILE | $RABBITMQ_HOME/etc/rabbitmq/rabbitmq <br> 主配置文件
 RABBITMQ_ADVANCED_CONFIG_FILE | $RABBITMQ_HOME/etc/rabbitmq/advanced <br> "高级"配置文件路径
 RABBITMQ_CONF_ENV_FILE | $RABBITMQ_HOME/etc/rabbitmq/rabbitmq-env.conf <br> 环境变量配置路径
 
-## 配置文件
-
-<p>
-虽然RabbitMQ中的某些设置可以使用环境变量进行配置，但大多数设置都是使用配置文件配置的，通常名为rabbitmq.conf，包括核心服务器和插件的配置。
-</p>
-
-#### 配置文件位置
-
-<p>
-根据不同的安装方式，配置文件一般在<code>/etc/rabbitmq/</code>或<code>{rabbit_install_dir}/etc/rabbitmq/</code>，如果不存在的话可手动创建。
-</p>
-
-<p>
-在rabbitmq启动时，可在日志文件的顶部查看加载的配置文件路径。
-</p>
-
-```linux
-Starting RabbitMQ 3.7.13 on Erlang 20.3
- Copyright (C) 2007-2019 Pivotal Software, Inc.
- Licensed under the MPL.  See http://www.rabbitmq.com/
-2019-03-16 13:57:13.007 [info] <0.256.0> 
- node           : rabbit@vagrant
- home dir       : /root
- config file(s) : /usr/local/rabbitmq/etc/rabbitmq/rabbitmq.conf
- cookie hash    : OIhbODu2Q0A6XyOqVBfFrA==
- log(s)         : /usr/local/rabbitmq/var/log/rabbitmq/rabbit@vagrant.log
-                : /usr/local/rabbitmq/var/log/rabbitmq/rabbit@vagrant_upgrade.log
- database dir   : /usr/local/rabbitmq/var/lib/rabbitmq/mnesia/rabbit@vagrant
-```
-
-<p>
-如果开启web管理页面的话，也可以在节点的信息中查看配置文件路径。
-</p>
-
-![image](https://github.com/xuanxuan2016/xuanxuan2016.github.io/blob/master/img/2019-03-15-11-rabbitmq-study-configuration/20190316140308.png?raw=true)
-
-#### 配置文件格式
-
-<p>
-在RabbitMQ 3.7.0之前，RabbitMQ配置文件使用<a href="http://erlang.org/doc/man/config.html" traget="_blank">Erlang术语</a>配置格式，新版本仍然支持该格式以实现向后兼容性。不过建议运行3.7.0或更高版本的用户考虑新的sysctl格式。
-</p>
-
-<p>
-老格式配置示例(config)
-</p>
-
-<p style="color:red;">
-Tips：最后的【.】不能缺少。
-</p>
-
-```linux
-[
-  {rabbit, [{ssl_options, [{cacertfile,           "/path/to/testca/cacert.pem"},
-                           {certfile,             "/path/to/server_certificate.pem"},
-                           {keyfile,              "/path/to/server_key.pem"},
-                           {verify,               verify_peer},
-                           {fail_if_no_peer_cert, true}]}]}
-].
-```
-
-<p>
-新格式配置示例(conf)
-</p>
-
-```linux
-ssl_options.cacertfile           = /path/to/testca/cacert.pem
-ssl_options.certfile             = /path/to/server_certificate.pem
-ssl_options.keyfile              = /path/to/server_key.pem
-ssl_options.verify               = verify_peer
-ssl_options.fail_if_no_peer_cert = true
-```
-
-<p>
-新格式虽然易于理解与编辑，但是如果需要使用深层嵌套的数据结构来表达配置时，还是需要使用老格式的方式，如<a href="https://www.rabbitmq.com/ldap.html" traget="_blank">LDAP功能</a>。
-</p>
-
-#### 配置查看
-
-<p>
-可使用<code>rabbitmqctl environment </code>命令显示当前的有效配置，配置为用户设置的与系统默认配置的合并结果。
-</p>
-
-#### 可设置变量
-
-[rabbitmq.conf配置示例](https://github.com/rabbitmq/rabbitmq-server/blob/v3.8.x/deps/rabbit/docs/rabbitmq.conf.example)
-
-[advanced.config配置示例](https://github.com/rabbitmq/rabbitmq-server/blob/v3.8.x/deps/rabbit/docs/advanced.config.example)
 
 ## 参考资料
 
