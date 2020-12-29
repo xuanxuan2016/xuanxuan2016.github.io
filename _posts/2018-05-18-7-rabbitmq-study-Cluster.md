@@ -20,7 +20,7 @@ tags:
 这里我们建立一个3台机器组成的集群，事先先在3台机器上安装好RabbitMQ服务。
 </p>
 
-[安装方法戳这里](https://xuanxuan2016.github.io/2018/05/08/rabbitmq-study-prepare-environment/)
+[安装方法戳这里](https://xuanxuan2016.github.io/2018/05/08/1-rabbitmq-study-prepare-environment/)
 
 <p>
 机器IP：<br>
@@ -129,11 +129,11 @@ RabbitMQ节点之间和命令行工具（如rabbitmqctl）是使用Cookie来确�
 </p>
 
 <p>
-<code>.erlang.cookie</code>文件一般在如下2个地方：<br>
-
-1. /var/lib/rabbitmq/.erlang.cookie
-2. $HOME/.erlang.cookie
+<code>.erlang.cookie</code>文件一般在如下2个地方：
 </p>
+
+- /var/lib/rabbitmq/.erlang.cookie
+- $HOME/.erlang.cookie
 
 ```
 #这里我们将rabbitmq_node2与rabbitmq_node3上的cookie，都使用rabbitmq_node1上的cookie
@@ -268,6 +268,8 @@ Cluster status of node 'rabbit@DEV-mHRO64'
           {'rabbit@DEV-mHRO64',[]}]}]
 ```
 
+##### 磁盘与内存节点
+
 <p>
 上面集群中各节点都是磁盘节点，如果希望节点是内存节点，可以参考如下设置方法。
 </p>
@@ -279,6 +281,19 @@ Stopping rabbit application on node 'rabbit@DEV-mHRO'
 Clustering node 'rabbit@DEV-mHRO' with 'rabbit@DEV-HROEx64'
 [root@DEV-mHRO otp_src_20.3]# rabbitmqctl start_app
 Starting node 'rabbit@DEV-mHRO'
+```
+
+```
+#或者修改节点类型
+# on rabbit1
+rabbitmqctl stop_app
+# => Stopping node rabbit@rabbit1 ...done.
+
+rabbitmqctl change_cluster_node_type ram
+# => Turning rabbit@rabbit1 into a ram node ...done.
+
+rabbitmqctl start_app
+# => Starting node rabbit@rabbit1 ...done.
 ```
 
 ```
@@ -296,6 +311,8 @@ Cluster status of node 'rabbit@DEV-HROEx64'
           {'rabbit@DEV-HROEx64',[]}]}]
 
 ```
+
+##### 集群挂载节点失效
 
 <p>
 如果原先集群的挂载的节点(rabbit@DEV-HROEx64)从集群(rabbit@DEV-HROEx64)脱离了，在重新挂载到集群时，会报如下错误。
