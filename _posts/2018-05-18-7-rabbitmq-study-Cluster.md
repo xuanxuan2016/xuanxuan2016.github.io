@@ -354,7 +354,7 @@ Starting node 'rabbit@DEV-mHRO'
 Stopping rabbit application on node 'rabbit@DEV-mHRO'
 
 #在rabbitmq_node1上移除rabbitmq_node2
-[root@DEV-HROEx64 ~]# rabbitmqctl forget_cluster_node rabbit@DEV-mHRO
+[root@DEV-HROEx64 ~]# rabbitmqctl forget_cluster_node rabbitmq_node2
 Removing node 'rabbit@DEV-mHRO' from cluster
 ```
 
@@ -464,6 +464,13 @@ Tips：如果将消息存储置于SSD的话，就可以极大提升持久化消�
 [root@DEV-HROEx64 ~]# rabbitmqctl set_policy -p / test_policy2 '^' '{"ha-mode":"all"}'
 Setting policy "test_policy2" for pattern "^" to "{\"ha-mode\":\"all\"}" with priority "0"
 ```
+
+<p>
+镜像队列同步模式<code>ha-sync-mode</code>，控制新加入的镜像队列的同步方式：
+</p>
+
+- manual(手动-默认)：新的镜像队列只接收新消息，如果主队列中有未消费完的消息时，此时状态为未同步。等待队列中历史消息被消费结束后，状态变为已同步。如果想新的镜像队列也有历史消息，可手动进行同步。
+- automatic(自动)：当新镜像队列加入时，队列将自动同步。但是需要考虑同步消息的数量(ha-sync-batch-size)与大小及网络的情况。
 
 ##### 4.3.策略查看
 
