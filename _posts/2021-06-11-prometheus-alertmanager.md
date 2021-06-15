@@ -211,7 +211,7 @@ global:
 
 ```
 # To insert a firing element's label values:
-{{ $labels.<labelname> }}
+{{ $labels.labelname }}
 # To insert the numeric expression value of the firing element:
 {{ $value }}
 ```
