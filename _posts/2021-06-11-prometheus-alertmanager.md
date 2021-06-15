@@ -206,7 +206,7 @@ global:
 </p>
 
 <p>
-通过$labels.<labelname>变量可以访问当前告警实例中指定标签的值。$value则可以获取当前PromQL表达式计算的样本值。
+通过<code>$labels.labelname</code>变量可以访问当前告警实例中指定标签的值。$value则可以获取当前PromQL表达式计算的样本值。
 </p>
 
 ```
