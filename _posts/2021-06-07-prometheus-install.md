@@ -94,7 +94,11 @@ mkdir -p data
 </p>
 
 ```
+#默认参数启动
 ./prometheus &
+
+#带参数启动
+./prometheus --storage.tsdb.retention=10d --web.enable-lifecycle &
 ```
 
 <p>
@@ -335,15 +339,14 @@ tar -xvf mysqld_exporter-0.13.0.linux-amd64.tar.gz
 </p>
 
 ```
-#/etc/systemd/system/mysql_exporter.service
 [Unit]
-Description=mysql_exporter
+Description=mysqld_exporter
 After=network.target
 
 [Service]
 Type=simple
 User=root
-ExecStart=/usr/local/exporter/mysqld_exporter --config.my-cnf="/usr/local/exporter/234_db.cnf" --web.listen-address=":9105"
+ExecStart=/usr/local/exporter/mysqld_exporter --config.my-cnf=/usr/local/exporter/234_db.cnf --web.listen-address=0.0.0.0:9104
 Restart=on-failure
 
 [Install]
@@ -352,13 +355,13 @@ WantedBy=multi-user.target
 
 ```
 #维护命令
-systemctl start mysql_exporter  开启服务
-systemctl stop mysql_exporter   关闭服务
-systemctl restart mysql_exporter    重启服务
-systemctl status mysql_exporter    查看服务状态
-systemctl enable mysql_exporter    将服务设置为开机自启动
-systemctl disable mysql_exporter    禁止服务开机自启动
-systemctl is-enabled mysql_exporter    查看服务是否开机启动
+systemctl start mysqld_exporter  开启服务
+systemctl stop mysqld_exporter   关闭服务
+systemctl restart mysqld_exporter    重启服务
+systemctl status mysqld_exporter    查看服务状态
+systemctl enable mysqld_exporter    将服务设置为开机自启动
+systemctl disable mysqld_exporter    禁止服务开机自启动
+systemctl is-enabled mysqld_exporter    查看服务是否开机启动
 systemctl list-unit-files|grep enabled    查看开机启动的服务列表
 ```
 
